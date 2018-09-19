@@ -1,11 +1,13 @@
 package com.company.xpertech.xpertech.Nav_Fragment.Troubleshoot_Fragment;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -166,18 +168,17 @@ public class TroubleshootFragment extends Fragment {
      * Post Execute calls MyTroubleshootRecyclerViewAdapter to display the data queried
      */
     public class MenuTask extends AsyncTask<String,Void,String> {
-        Context ctx;
-        AlertDialog alertDialog;
+        ProgressDialog dialog;
 
         public MenuTask(Context ctx)
         {
-            this.ctx =ctx;
+            dialog = new ProgressDialog((FragmentActivity) ctx);
         }
 
         @Override
         protected void onPreExecute() {
-            alertDialog = new AlertDialog.Builder(ctx).create();
-            alertDialog.setTitle("");
+            dialog.setMessage("Loading");
+            dialog.show();
         }
         @Override
         protected String doInBackground(String... params) {
@@ -237,6 +238,10 @@ public class TroubleshootFragment extends Fragment {
 
             mAdapter = new MyTroubleshootRecyclerViewAdapter(troubleshootList,mListener);
             recyclerView.setAdapter(mAdapter);
+
+            if(dialog.isShowing()){
+                dialog.dismiss();
+            }
         }
     }
 }

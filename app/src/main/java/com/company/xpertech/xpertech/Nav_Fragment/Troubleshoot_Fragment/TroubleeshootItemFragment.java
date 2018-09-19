@@ -2,6 +2,7 @@ package com.company.xpertech.xpertech.Nav_Fragment.Troubleshoot_Fragment;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -49,6 +50,7 @@ public class TroubleeshootItemFragment extends Fragment {
     private String mParam2;
     private static String data = null;
     private static int position = 0;
+    private static String title = "";
     static ArrayList<Troubleshoot> troubleshootArrayList= new ArrayList<Troubleshoot>();
     static ArrayList<String> images = new ArrayList<String>();
     int cnt = 0;
@@ -90,6 +92,8 @@ public class TroubleeshootItemFragment extends Fragment {
          */
         Bundle bundle = getArguments();
         position = bundle.getInt("position")+1;
+        title = bundle.getString("title");
+
 
         /**
          * Get the box id and user id from the session
@@ -105,7 +109,7 @@ public class TroubleeshootItemFragment extends Fragment {
         /**
          * Initiate SubMenuTask async task to query for the troubleshooting steps
          */
-        SubMenuTask subMenuTask = new SubMenuTask(getContext());
+        SubMenuTask subMenuTask = new SubMenuTask((FragmentActivity)getContext());
         subMenuTask.execute("stat","troubleshoot_steps", position+"",BOX_NUMBER_SESSION);
     }
 
@@ -122,10 +126,6 @@ public class TroubleeshootItemFragment extends Fragment {
             gif.setImageResource(imgInt);
         }
         txt.setText(troubleshoot.getInstruct());
-
-        if(cnt >= troubleshootArrayList.size()+1){
-            btn_done.setText("DONE");
-        }
     }
 
     @Override
@@ -170,6 +170,9 @@ public class TroubleeshootItemFragment extends Fragment {
                          * if it is not yet the last troubleshooting step, if statement will be initiated for YES button
                          * but if it is the last troubleshooting step, else statement will be initiated for YES button
                          */
+                        if(cnt == troubleshootArrayList.size()-2){
+                            btn_done.setText("DONE");
+                        }
                         if(cnt < troubleshootArrayList.size()){
                             next(cnt);
                         } else {
@@ -181,7 +184,7 @@ public class TroubleeshootItemFragment extends Fragment {
                              * and returns to the list of troubleshooting problem
                              */
                             Task task = new Task();
-                            task.execute("stat", "troubleshoot", "pass", USER_SESSION);
+                            task.execute("stat", "troubleshoot", "pass", USER_SESSION, title);
                             actvty.getSupportFragmentManager().beginTransaction().replace(R.id.content_main, tf).commit();
                         }
                     }
@@ -203,7 +206,7 @@ public class TroubleeshootItemFragment extends Fragment {
                          * and a dialog to call customer service will be displayed
                          */
                         Task task = new Task();
-                        task.execute("stat", "troubleshoot", "fail", USER_SESSION);
+                        task.execute("stat", "troubleshoot", "fail", USER_SESSION, title);
                         dialog_text.setText("Would you like to call customer service now?");
                         d.show();
 
@@ -212,23 +215,38 @@ public class TroubleeshootItemFragment extends Fragment {
                          * and again the Task for statistics will be triggered to save that a call was made
                          */
                         btn_back.setOnClickListener(new View.OnClickListener(){
-
                             @Override
                             public void onClick(View v) {
-                                Intent callIntent = new Intent(Intent.ACTION_CALL);
-                                callIntent.setData(Uri.parse("tel:4458514"));
 
-                                if (ContextCompat.checkSelfPermission(getActivity().getApplicationContext(), CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
-                                    Task task = new Task();
-                                    task.execute("stat","call", "pass", USER_SESSION);
-                                    startActivity(callIntent);
-                                } else {
-                                    requestPermissions(new String[]{CALL_PHONE}, 1);
-                                }
-                                troubleshootArrayList = new ArrayList<Troubleshoot>();
+                                dialog_text.setText("Warning! Call rates may apply. Would you like to proceed?");
+                                btn_back.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        Intent callIntent = new Intent(Intent.ACTION_CALL);
+                                        callIntent.setData(Uri.parse("tel:4458514"));
+
+                                        if (ContextCompat.checkSelfPermission(getActivity().getApplicationContext(), CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+                                            Task task = new Task();
+                                            task.execute("stat","call", "pass", USER_SESSION, "Made phone call");
+                                            startActivity(callIntent);
+                                        } else {
+                                            requestPermissions(new String[]{CALL_PHONE}, 1);
+                                        }
+                                        troubleshootArrayList = new ArrayList<Troubleshoot>();
+                                        d.dismiss();
+                                        TroubleshootFragment tf = new TroubleshootFragment();
+                                        actvty.getSupportFragmentManager().beginTransaction().replace(R.id.content_main, tf).commit();
+                                    }
+                                });
+                            }
+                        });
+
+                        btn_call.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
                                 d.dismiss();
-                                TroubleshootFragment tf = new TroubleshootFragment();
-                                actvty.getSupportFragmentManager().beginTransaction().replace(R.id.content_main, tf).commit();
+                                Task task = new Task();
+                                task.execute("stat","call", "fail", USER_SESSION, "Didn't make phone call");
                             }
                         });
 
@@ -241,7 +259,7 @@ public class TroubleeshootItemFragment extends Fragment {
                             public void onClick(View v) {
                                 d.dismiss();
                                 Task task = new Task();
-                                task.execute("stat","call", "fail", USER_SESSION);
+                                task.execute("stat","call", "fail", USER_SESSION, "Didn't make phone call");
                             }
                         });
                     }
@@ -302,18 +320,17 @@ public class TroubleeshootItemFragment extends Fragment {
      *  Function to Query for the troubleshooting steps
      */
     public class SubMenuTask extends AsyncTask<String,Void,String> {
-        Context ctx;
-        AlertDialog alertDialog;
+        ProgressDialog dialog;
 
-        public SubMenuTask(Context ctx)
+        public SubMenuTask(FragmentActivity activity)
         {
-            this.ctx =ctx;
+            dialog = new ProgressDialog(activity);
         }
 
         @Override
         protected void onPreExecute() {
-            alertDialog = new AlertDialog.Builder(ctx).create();
-            alertDialog.setTitle("");
+            dialog.setMessage("Loading");
+            dialog.show();
         }
         @Override
         protected String doInBackground(String... params) {
@@ -398,6 +415,9 @@ public class TroubleeshootItemFragment extends Fragment {
         @Override
         protected void onPostExecute(String result) {
             next(cnt);
+            if(dialog.isShowing()){
+                dialog.dismiss();
+            }
         }
     }
 }

@@ -2,6 +2,7 @@ package com.company.xpertech.xpertech.Main;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -24,6 +25,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -199,28 +201,52 @@ public class MainActivity extends AppCompatActivity
                 getSupportFragmentManager().beginTransaction().replace(R.id.content_main, new RemoteListFragment()).addToBackStack("tag").commit();
                 break;
             case R.id.nav_send:
-                /**
-                 *  Intent for a call action and setting the number to which the call will be directed
-                 */
-                Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:4458514"));
+                final Dialog d = new Dialog(this);
+                d.setContentView(R.layout.fragment_troubleshoot_dialog);
+                d.show();
+                final TextView dialog_text = (TextView) d.findViewById(R.id.dialog_text);
+                dialog_text.setText("Warning! Call rates may apply. Would you like to proceed?");
+                final Button btn_call = (Button) d.findViewById(R.id.btn_call);
+                btn_call.setText("No");
+                final Button btn_back = (Button) d.findViewById(R.id.btn_back);
+                btn_back.setText("Yes");
 
-                /**
-                 *  If statements check if the permission of the application to phone to make a phone call using the app is granted
-                 */
-                if (ContextCompat.checkSelfPermission(this.getApplicationContext(), CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
-                    /**
-                     * Task method that stores the statistics information, in this case, user made a phone call
-                     */
-                    Task task = new Task();
-                    task.execute("stat","call", "pass", USER_SESSION);
-                    startActivity(callIntent);
-                } else {
-                    /**
-                     *  when if condition is false, the application will request permission to make a phone call
-                     */
-                    requestPermissions(new String[]{CALL_PHONE}, 1);
-                }
+                btn_back.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        /**
+                         *  Intent for a call action and setting the number to which the call will be directed
+                         */
+                        Intent callIntent = new Intent(Intent.ACTION_CALL);
+                        callIntent.setData(Uri.parse("tel:4458514"));
+
+                        /**
+                         *  If statements check if the permission of the application to phone to make a phone call using the app is granted
+                         */
+                        if (ContextCompat.checkSelfPermission(getApplication().getApplicationContext(), CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+                            /**
+                             * Task method that stores the statistics information, in this case, user made a phone call
+                             */
+                            Task task = new Task();
+                            task.execute("stat","call", "pass", USER_SESSION, "Made phone call");
+                            startActivity(callIntent);
+                        } else {
+                            /**
+                             *  when if condition is false, the application will request permission to make a phone call
+                             */
+                            requestPermissions(new String[]{CALL_PHONE}, 1);
+                        }
+                    }
+                });
+
+                btn_call.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        d.dismiss();
+                        Task task = new Task();
+                        task.execute("stat","call", "fail", USER_SESSION, "Didn't make phone call");
+                    }
+                });
                 break;
             case R.id.nav_userManual:
                 getSupportFragmentManager().beginTransaction().replace(R.id.content_main, new ManualListFragment()).addToBackStack("tag").commit();

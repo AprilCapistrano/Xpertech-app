@@ -55,6 +55,7 @@ public class MyTroubleshootRecyclerViewAdapter extends RecyclerView.Adapter<MyTr
                 actvty = (FragmentActivity) ctx;
                 Bundle bundle = new Bundle();
                 bundle.putInt("position",position);
+                bundle.putString("title", mValues.get(position).getTitle());
                 IntroFragment introf = new IntroFragment();
                 introf.setArguments(bundle);
                 actvty.getSupportFragmentManager().beginTransaction().replace(R.id.content_main, introf).commit();
@@ -87,7 +88,7 @@ public class MyTroubleshootRecyclerViewAdapter extends RecyclerView.Adapter<MyTr
 
         public ViewHolder(View view) {
             super(view);
-             mView = view;
+            mView = view;
             gifImageView = (GifImageView) view.findViewById(R.id.gif_imageView);
             mIdView = (TextView) view.findViewById(R.id.id);
             mContentView = (TextView) view.findViewById(R.id.content);
