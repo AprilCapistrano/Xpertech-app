@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_troubleshoot"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="@string/menu_troubleshoot" />
+        <item
+            android:id="@+id/nav_selfInstall"
+            android:icon="@drawable/ic_assignment"
+            android:title="@string/menu_self_install" />
+        <item
+            android:id="@+id/nav_userManual"
+            android:icon="@drawable/ic_tv_black_24dp"
+            android:title="@string/menu_manual" />
+        <item
+            android:id="@+id/nav_remoteControl"
+            android:icon="@drawable/ic_speaker_black_24dp"
+            android:title="@string/menu_remote" />
+        <item
+            android:id="@+id/nav_package"
+            android:icon="@drawable/ic_local_mall"
+            android:title="@string/menu_package" />
+    </group>
+
+    <item android:title="Quick Assist">
+        <menu>
+            <item
+                android:id="@+id/nav_stat"
+                android:icon="@drawable/ic_pie"
+                android:title="Statistics" />
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Feedback" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_call"
+                android:title="Call Provider" />
+        </menu>
+    </item>
+
+    <item android:title="About">
+        <menu>
+            <item
+                android:id="@+id/nav_aboutxpert"
+                android:icon="@drawable/ic_perm"
+                android:title="About Xpertech" />
+            <item
+                android:id="@+id/nav_aboutnbc"
+                android:icon="@drawable/ic_info"
+                android:title="About New Bacolod Cable TV" />
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/nav_logout"
+        android:icon="@drawable/ic_exit"
+        android:title="Logout" />
+
+
+</menu>

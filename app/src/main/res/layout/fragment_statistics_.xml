@@ -1,0 +1,49 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="Login Rate"
+            android:textSize="20dp"/>
+        <com.github.mikephil.charting.charts.PieChart
+            android:layout_marginTop="20dp"
+            android:id="@+id/login_piechart"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="Call Rate"
+            android:textSize="20dp"/>
+        <com.github.mikephil.charting.charts.PieChart
+            android:layout_marginTop="20dp"
+            android:id="@+id/call_piechart"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="Troubleshoot Rate"
+            android:textSize="20dp"/>
+        <com.github.mikephil.charting.charts.PieChart
+            android:layout_marginTop="20dp"
+            android:id="@+id/troubleshoot_piechart"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+
+
+    </LinearLayout>
+</ScrollView>

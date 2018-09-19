@@ -1,0 +1,160 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white">
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fillViewport="true"
+            android:layout_weight="1">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:src="@drawable/nbc"
+                android:layout_gravity="center"
+                android:layout_width="150dp"
+                android:layout_height="150dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="18sp"
+                android:text="WE ARE"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="20sp"
+                android:padding="@dimen/item_padding"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:text="@string/about_nbctv"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:padding="@dimen/item_padding"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:text="@string/slogan"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:padding="@dimen/item_padding"
+                android:text="@string/desc_01"/>
+
+
+            <ImageView
+                android:src="@drawable/tv"
+                android:layout_gravity="center"
+                android:layout_width="300dp"
+                android:layout_height="180dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:padding="@dimen/item_padding"
+                android:text="@string/desc_02"/>
+
+            <ImageView
+                android:src="@drawable/agent"
+                android:layout_gravity="center"
+                android:layout_width="300dp"
+                android:layout_height="180dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:padding="@dimen/item_padding"
+                android:text="@string/desc_03"/>
+
+            <ImageView
+                android:src="@drawable/internet"
+                android:layout_gravity="center"
+                android:layout_width="280dp"
+                android:layout_height="180dp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="@dimen/item_padding"
+                android:text="@string/desc_04"
+                android:textAlignment="center"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:padding="@dimen/item_padding"
+                android:text="@string/desc_05"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:padding="@dimen/item_padding"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:text="@string/contact"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:padding="@dimen/item_padding"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:text="@string/website"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:padding="@dimen/item_padding"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:text="@string/address"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:padding="@dimen/item_padding"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:text="@string/signature"/>
+
+
+
+            </LinearLayout>
+        </ScrollView>
+
+</LinearLayout>

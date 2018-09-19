@@ -1,0 +1,50 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="20dp"
+    tools:context="com.company.xpertech.xpertech.Nav_Fragment.Remote_Fragment.RemoteItemFragment">
+
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:id="@+id/remote_img"
+        android:src="@drawable/remote_0"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:orientation="vertical"
+            android:layout_marginRight="5dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Details"
+                android:textSize="22sp"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Widget.PopupMenu.Header"
+                />
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/item_padding"
+                    android:textSize="16sp"
+                    android:text="Select a part of the remote from the side --> to view it's details"
+                    android:id="@+id/remote_detail"/>
+            </ScrollView>
+        </LinearLayout>
+        <ListView
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="match_parent"
+            android:id="@+id/remote_detail_list"/>
+    </LinearLayout>
+</LinearLayout>

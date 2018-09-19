@@ -1,0 +1,85 @@
+<resources>
+    <string name="app_name">Xpertech</string>
+    <string name="title_activity_main">Home</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="intro_title">Welcome to Xpertech!</string>
+    <string name="intro_scan_qr">Please scan the QR Code from your cable box to enter.</string>
+    <string name="intro_enter_code">Enter your account number</string>
+    <string name="intro_not_qr">Or enter your account number</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_troubleshoot">Troubleshoot</string>
+    <string name="menu_manual">User Manual</string>
+    <string name="menu_self_install">Self-Install Guide</string>
+    <string name="menu_remote">Remote Control Assistant</string>
+    <string name="menu_package">Packages and Channel Lineup</string>
+
+    <string name="btn_enter_code">PROCEED</string>
+    <string name="btn_cancel">CANCEL</string>
+
+    <string name="fragment_intro_instruction">Please follow the steps provided on the screen and answer the questions.</string>
+
+    <string name="accept">Accept</string>
+    <string name="eula_string">
+        End-User License Agreement
+
+        \n\nPlease read this End-User License Agreement ("Agreement") carefully before clicking the "I Agree" button or downloading.
+        By clicking the "I Agree" radio button then ‘Continue’, downloading or using the Application, you are agreeing to be bound by the terms and conditions of this Agreement.
+        If you do not agree to the terms of this Agreement, do not click on the "I Agree" radio button and do not download or use the Application.
+
+        \n\nLicense
+        \n\nXpertech grants you a revocable, non-exclusive, non-transferable, limited license to download, install and use the Application solely for your personal, non-commercial purposes strictly in accordance with the terms of this Agreement.
+
+        \n\nRestrictions
+        \n\nYou agree not to, and you will not permit others to:
+        \n\na) license, sell, rent, lease, assign, distribute, transmit, host, outsource, disclose or otherwise commercially exploit the Application or make the Application available to any third party.
+
+        \n\nModifications to Application
+        \n\nXpertech reserves the right to modify, suspend or discontinue, temporarily or permanently, the Application or any service to which it connects, with or without notice and without liability to you.
+
+        \n\nTerm and Termination
+        \n\nThis Agreement shall remain in effect until terminated by you or Xpertech, its admin or its developers.
+        Xpertech may, in its sole discretion, at any time and for any or no reason, suspend or terminate this Agreement with or without prior notice.
+        This Agreement will terminate immediately, without prior notice from Xpertech, in the event that you fail to comply with any provision of this Agreement. You may also terminate this Agreement by deleting the Application and all copies thereof from your mobile device or from your desktop.
+        Upon termination of this Agreement, you shall cease all use of the Application and delete all copies of the Application from your mobile device or from your desktop.
+
+        \n\nSeverability
+        \n\nIf any provision of this Agreement is held to be unenforceable or invalid, such provision will be changed and interpreted to accomplish the objectives of such provision to the greatest extent possible under applicable law and the remaining provisions will continue in full force and effect.
+
+        \n\nAmendments to this Agreement
+        \n\nXpertech reserves the right, at its sole discretion, to modify or replace this Agreement at any time. If a revision is material we will provide at least 60 days’ notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.
+
+        \n\nContact Information
+        \n\nIf you have any questions about this Agreement, please contact us.
+
+            \n\nEmail: josh.sanchez1012spotify@gmail.com
+            \n\nPhone: (+63) 928 520-0630
+    </string>
+
+    <string name="about_nbctv">NEW BACOLOD CABLE TV</string>
+    <string name="slogan">We say our services are the best this city has to offer.
+    \nBest equipment. Best people.</string>
+    <string name="desc_01">We are claiming to be the first company in the country to offer the Triple Play service (internet, phone and cable TV).</string>
+    <string name="desc_02">For Cable TV services, we offer Digital Cable TV that is HD capable and has hundreds of listed channels. Choose the package that suits your lifestyle for a reasonable and cheap cost. </string>
+    <string name="desc_03">For Phone/Landline services, check out our independent telephone system that is in partnership with PLDT and Globe to empower our customers. It can also do the new technology called VoIP or Voice over Internet Protocol which allows you to call via the internet. </string>
+    <string name="desc_04">For Internet, we pride ourselves to offer the best internet service provider in the city which has cable broadband faster than other providers\' DSL connections. Reliable and cheap. That is our guarantee. By the way, did we say NO CAP LIMIT? </string>
+    <string name="desc_05">Avail our packages individually, double play or triple play. You can also make your own cable tv channel selections. Here at NBCTV, you get to have what you want, when you want. </string>
+    <string name="discount">Get discounts if you subscribe online. Just visit NEWBACOLODCABLE.COM/SUBSCRIBE </string>
+    <string name="contact">You can also call us at (034) 709-1001 / 435-7182 </string>
+    <string name="website">Visit our website at newbacolodcable.com</string>
+    <string name="address">Physical address @ 13th Street, Corner Hilado Extension, Terra Dolce Building, Barangay Villamonte, Bacolod City. </string>
+    <string name="signature">New Bacolod Cable TV Technology Unmasked. </string>
+
+    <string name="about_xpertech">Xpertech was launched to benefit cable box users and subscribers of New Bacolod Cable TV as the city\'s own reliable and affordable cable service provider. It is created by 3 outstanding and aspiring programmers from the University of St. La Salle.
+        \n\nXpertech allows users to do troubleshooting in the most hassle-free way as it is portable and user-friendly. It also showcases features for users who are eligible for troubleshooting as it caters user-level options as an added security value for both the software and cable subscription. Xpertech also allows users to scan their cable boxes to identify information about their services, box info and troubleshooting that can be done to fix any occuring issues that it may or is encountering.
+        \n\nXpertech advocates and believes that \'troubleshooting on your own\' your cable service has never been this easy.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
