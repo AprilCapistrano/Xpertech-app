@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
@@ -51,12 +52,16 @@ public class SignUpActivity extends AppCompatActivity {
     String BOX_NUMBER_SESSION;
     String USER_SESSION;
     Intent intent;
+    int flag = 0;
 
     final int RequestCameraPermissionID = 1001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        setTitle("Scan");
         // Show EULA
         new AppEULA(this).show();
 
@@ -161,9 +166,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     public class BackgroundTask extends AsyncTask<String, Void, String> {
-        AlertDialog alertDialog;
         Context ctx;
-        public String boxNumber = null;
 
         public BackgroundTask(Context ctx) {
             this.ctx = ctx;
@@ -171,12 +174,12 @@ public class SignUpActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
-            String login_url = "http://uslsxpertech.000webhostapp.com/xpertech/login.php";
+            String login_url = "https://uslsxpertech.000webhostapp.com/xpertech/login.php";
             String method = params[0];
             if (method.equals("login")) {
                 String accountNumber = params[1];
                 try {
-                    URL url = new URL(login_url);
+                    URL url = new URL(login_url.trim());
                     HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                     httpURLConnection.setRequestMethod("POST");
                     httpURLConnection.setDoOutput(true);
@@ -213,34 +216,38 @@ public class SignUpActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            BOX_NUMBER_SESSION = BOX_NUMBER_SESSION.replaceAll("\\s+", "");
-            if (BOX_NUMBER_SESSION.equals("1001") ||
-                    BOX_NUMBER_SESSION.equals("1002") ||
-                    BOX_NUMBER_SESSION.equals("1003")) {
-                cameraSource.stop();
+            if(BOX_NUMBER_SESSION != null){
+                BOX_NUMBER_SESSION = BOX_NUMBER_SESSION.replaceAll("\\s+", "");
+                if (BOX_NUMBER_SESSION.equals("1001") ||
+                        BOX_NUMBER_SESSION.equals("1002") ||
+                        BOX_NUMBER_SESSION.equals("1003") &&
+                        flag == 0) {
+                    cameraSource.stop();
 
-                //Storing the box number and user id to the session
-                editor = sharedPref.edit();
-                editor.putString("BOX_NUMBER_SESSION", BOX_NUMBER_SESSION);
-                editor.putString("USER_SESSION", USER_SESSION);
-                editor.commit();
+                    //Storing the box number and user id to the session
+                    editor = sharedPref.edit();
+                    editor.putString("BOX_NUMBER_SESSION", BOX_NUMBER_SESSION);
+                    editor.putString("USER_SESSION", USER_SESSION);
+                    editor.commit();
 
-                //if the main activity will start, the sign up activity will instantly be stop
-                intent = new Intent(getBaseContext(), MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                intent.putExtra("keep", false);
+                    //if the main activity will start, the sign up activity will instantly be stop
+                    intent = new Intent(getBaseContext(), MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.putExtra("keep", false);
 
-                Toast.makeText(getApplicationContext(), "You have successfully logged in.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "You have successfully logged in.", Toast.LENGTH_SHORT).show();
 
-                startActivity(intent);
-                finish();
-            } else {
-                // if the scanned qr code does not exist in the system, Task for statistics will be initiated and store the information that
-                // an un successful log in was performed
-                Toast.makeText(getApplicationContext(), "Sorry, device \"" + BOX_NUMBER_SESSION + "\" is not registered.", Toast.LENGTH_SHORT).show();
-                Task task = new Task();
-                task.execute("stat", "login", "fail", "10001000000000", "Failed Login Attemp");
+                    flag = 1;
+                    startActivity(intent);
+                    finish();
+                } else {
+                    // if the scanned qr code does not exist in the system, Task for statistics will be initiated and store the information that
+                    // an un successful log in was performed
+                    Toast.makeText(getApplicationContext(), "Sorry, device \"" + BOX_NUMBER_SESSION + "\" is not registered.", Toast.LENGTH_SHORT).show();
+                    Task task = new Task();
+                    task.execute("stat", "login", "fail", "10001000000000", "Failed Login Attemp");
+                }
             }
         }
     }

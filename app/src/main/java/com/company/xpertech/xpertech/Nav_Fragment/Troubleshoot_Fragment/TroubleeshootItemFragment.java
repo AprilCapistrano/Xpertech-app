@@ -170,7 +170,7 @@ public class TroubleeshootItemFragment extends Fragment {
                          * if it is not yet the last troubleshooting step, if statement will be initiated for YES button
                          * but if it is the last troubleshooting step, else statement will be initiated for YES button
                          */
-                        if(cnt == troubleshootArrayList.size()-2){
+                        if(cnt == troubleshootArrayList.size()-1){
                             btn_done.setText("DONE");
                         }
                         if(cnt < troubleshootArrayList.size()){
@@ -244,9 +244,9 @@ public class TroubleeshootItemFragment extends Fragment {
                         btn_call.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                d.dismiss();
                                 Task task = new Task();
                                 task.execute("stat","call", "fail", USER_SESSION, "Didn't make phone call");
+                                d.dismiss();
                             }
                         });
 

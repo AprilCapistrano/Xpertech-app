@@ -14,6 +14,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  * Created by Skylar Gail on 8/30/2018.
@@ -22,6 +24,10 @@ import java.net.URLEncoder;
 public class Task extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... params) {
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy,HH:mm");
+        String stamp = format.format(c.getTime());
+
         String urls = "https://uslsxpertech.000webhostapp.com/xpertech/statistic.php";
         String method = params[0];
         if (method.equals("stat")) {
@@ -29,6 +35,8 @@ public class Task extends AsyncTask<String, Void, String> {
             String status = params[2];
             String ownership = params[3];
             String stat_desc = params[4];
+            String stat_date = stamp.split(",")[0];
+            String stat_time = stamp.split(",")[1];
             try {
                 URL url = new URL(urls);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -41,6 +49,8 @@ public class Task extends AsyncTask<String, Void, String> {
                 data += "&" + URLEncoder.encode("status", "UTF-8") + "=" + URLEncoder.encode(status, "UTF-8");
                 data += "&" + URLEncoder.encode("ownership", "UTF-8") + "=" + URLEncoder.encode(ownership, "UTF-8");
                 data += "&" + URLEncoder.encode("stat_desc", "UTF-8") + "=" + URLEncoder.encode(stat_desc, "UTF-8");
+                data += "&" + URLEncoder.encode("stat_time", "UTF-8") + "=" + URLEncoder.encode(stat_time, "UTF-8");
+                data += "&" + URLEncoder.encode("stat_date", "UTF-8") + "=" + URLEncoder.encode(stat_date, "UTF-8");
                 bufferedWriter.write(data);
                 bufferedWriter.flush();
                 bufferedWriter.close();
