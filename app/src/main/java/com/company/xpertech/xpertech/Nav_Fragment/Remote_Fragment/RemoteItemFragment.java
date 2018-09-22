@@ -1,11 +1,13 @@
 package com.company.xpertech.xpertech.Nav_Fragment.Remote_Fragment;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -77,7 +79,7 @@ public class RemoteItemFragment extends Fragment {
         /**
          * Initiating the Async task to query for the remote details
          */
-        RemoteItemFragment.RemoteDetailTask remoteDetailTask = new RemoteItemFragment.RemoteDetailTask(getContext());
+        RemoteItemFragment.RemoteDetailTask remoteDetailTask = new RemoteItemFragment.RemoteDetailTask((FragmentActivity) getContext());
         remoteDetailTask.execute("remote_detail");
         return view;
     }
@@ -117,7 +119,7 @@ public class RemoteItemFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                RemoteItemFragment.RemoteDescTask remoteDescTask = new RemoteItemFragment.RemoteDescTask(getContext());
+                RemoteItemFragment.RemoteDescTask remoteDescTask = new RemoteItemFragment.RemoteDescTask((FragmentActivity) getContext());
                 remoteDescTask.execute("remote_desc", (position+1)+"");
             }
         });
@@ -157,18 +159,17 @@ public class RemoteItemFragment extends Fragment {
      * Query for the list of buttons of the remote
      */
     public class RemoteDetailTask extends AsyncTask<String,Void,String> {
-        Context ctx;
-        AlertDialog alertDialog;
+        ProgressDialog dialog;
 
-        public RemoteDetailTask(Context ctx)
+        public RemoteDetailTask(FragmentActivity activity)
         {
-            this.ctx =ctx;
+            dialog = new ProgressDialog(activity);
         }
 
         @Override
         protected void onPreExecute() {
-            alertDialog = new AlertDialog.Builder(ctx).create();
-            alertDialog.setTitle("");
+            dialog.setMessage("Loading");
+            dialog.show();
         }
         @Override
         protected String doInBackground(String... params) {
@@ -209,6 +210,9 @@ public class RemoteItemFragment extends Fragment {
         @Override
         protected void onPostExecute(String result) {
             display();
+            if(dialog.isShowing()){
+                dialog.dismiss();
+            }
         }
     }
 
@@ -218,18 +222,17 @@ public class RemoteItemFragment extends Fragment {
      *  Description of the button to be displayed
      */
     public class RemoteDescTask extends AsyncTask<String,Void,String> {
-        Context ctx;
-        AlertDialog alertDialog;
+        ProgressDialog dialog;
 
-        public RemoteDescTask(Context ctx)
+        public RemoteDescTask(FragmentActivity activity)
         {
-            this.ctx =ctx;
+            dialog = new ProgressDialog(activity);
         }
 
         @Override
         protected void onPreExecute() {
-            alertDialog = new AlertDialog.Builder(ctx).create();
-            alertDialog.setTitle("");
+            dialog.setMessage("Fetching Details");
+            dialog.show();
         }
         @Override
         protected String doInBackground(String... params) {
@@ -294,6 +297,9 @@ public class RemoteItemFragment extends Fragment {
         @Override
         protected void onPostExecute(String result) {
             setDetail();
+            if(dialog.isShowing()){
+                dialog.dismiss();
+            }
         }
     }
 }

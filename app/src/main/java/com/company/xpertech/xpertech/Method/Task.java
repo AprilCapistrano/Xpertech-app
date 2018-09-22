@@ -57,14 +57,13 @@ public class Task extends AsyncTask<String, Void, String> {
                 outputStream.close();
                 InputStream inputStream = httpURLConnection.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
-                String response = "";
                 String line = "";
                 line = bufferedReader.readLine();
                 Log.d("Result", line);
                 bufferedReader.close();
                 inputStream.close();
                 httpURLConnection.disconnect();
-                return response;
+                return "";
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {

@@ -1,6 +1,7 @@
 package com.company.xpertech.xpertech.Nav_Fragment.Self_Install_Fragment;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -85,7 +86,7 @@ public class SelfInstallFragment extends Fragment {
         /**
          *  Initiate the query for the displaying of the list of self install function
          */
-        SelfInstallFragment.MenuTask menuTask = new SelfInstallFragment.MenuTask(getContext());
+        SelfInstallFragment.MenuTask menuTask = new SelfInstallFragment.MenuTask((FragmentActivity) getContext());
         menuTask.execute(method, BOX_NUMBER_SESSION);
 
         getActivity().setTitle("Self Install");
@@ -160,18 +161,17 @@ public class SelfInstallFragment extends Fragment {
      *  Query for the Self install function list
      */
     public class MenuTask extends AsyncTask<String,Void,String> {
-        Context ctx;
-        AlertDialog alertDialog;
+        ProgressDialog dialog;
 
-        public MenuTask(Context ctx)
+        public MenuTask(FragmentActivity activity)
         {
-            this.ctx =ctx;
+            dialog = new ProgressDialog(activity);
         }
 
         @Override
         protected void onPreExecute() {
-            alertDialog = new AlertDialog.Builder(ctx).create();
-            alertDialog.setTitle("");
+            dialog.setMessage("Loading");
+            dialog.show();
         }
         @Override
         protected String doInBackground(String... params) {
@@ -220,6 +220,9 @@ public class SelfInstallFragment extends Fragment {
         @Override
         protected void onPostExecute(String result) {
             display();
+            if(dialog.isShowing()){
+                dialog.dismiss();
+            }
         }
     }
 }

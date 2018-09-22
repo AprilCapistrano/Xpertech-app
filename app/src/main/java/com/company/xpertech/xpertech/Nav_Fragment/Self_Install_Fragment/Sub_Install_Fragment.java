@@ -1,6 +1,7 @@
 package com.company.xpertech.xpertech.Nav_Fragment.Self_Install_Fragment;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -8,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -98,7 +100,7 @@ public class Sub_Install_Fragment extends Fragment {
         /**
          *  Initiate async task SubInstallTask to query for detail info of the selected data from SelfIntallFragment
          */
-        Sub_Install_Fragment.SubInstallTask sit = new Sub_Install_Fragment.SubInstallTask(getContext());
+        Sub_Install_Fragment.SubInstallTask sit = new Sub_Install_Fragment.SubInstallTask((FragmentActivity) getContext());
         sit.execute("selfinstall_steps", position+"", BOX_NUMBER_SESSION);
     }
 
@@ -135,18 +137,17 @@ public class Sub_Install_Fragment extends Fragment {
      * Query for Detailed information based on the selected item in SubIntallFragment
      */
     public class SubInstallTask extends AsyncTask<String,Void,String> {
-        Context ctx;
-        AlertDialog alertDialog;
+        ProgressDialog dialog;
 
-        public SubInstallTask(Context ctx)
+        public SubInstallTask(FragmentActivity activity)
         {
-            this.ctx =ctx;
+            dialog = new ProgressDialog(activity);
         }
 
         @Override
         protected void onPreExecute() {
-            alertDialog = new AlertDialog.Builder(ctx).create();
-            alertDialog.setTitle("");
+            dialog.setMessage("Loading");
+            dialog.show();
         }
         @Override
         protected String doInBackground(String... params) {
@@ -257,6 +258,9 @@ public class Sub_Install_Fragment extends Fragment {
             listView.setAdapter(installAdapter);
             if(title != null & !title.contains("No title found.")) {
                 textView.setText(title);
+            }
+            if(dialog.isShowing()){
+                dialog.dismiss();
             }
         }
     }

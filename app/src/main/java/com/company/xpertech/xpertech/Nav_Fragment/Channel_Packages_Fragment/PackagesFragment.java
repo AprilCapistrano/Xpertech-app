@@ -1,11 +1,13 @@
 package com.company.xpertech.xpertech.Nav_Fragment.Channel_Packages_Fragment;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -92,7 +94,7 @@ public class PackagesFragment extends Fragment {
         packagesList = new ArrayList<Packages>();
 
         String method = "package";
-        MenuTask menuTask = new MenuTask(getContext());
+        MenuTask menuTask = new MenuTask((FragmentActivity) getContext());
         menuTask.execute(method);
 
 
@@ -133,18 +135,17 @@ public class PackagesFragment extends Fragment {
 
     //  Async Task to Query for the list of packages available
     public class MenuTask extends AsyncTask<String,Void,String> {
-        Context ctx;
-        AlertDialog alertDialog;
+        ProgressDialog dialog;
 
-        public MenuTask(Context ctx)
+        public MenuTask(FragmentActivity activity)
         {
-            this.ctx =ctx;
+            dialog = new ProgressDialog(activity);
         }
 
         @Override
         protected void onPreExecute() {
-            alertDialog = new AlertDialog.Builder(ctx).create();
-            alertDialog.setTitle("");
+            dialog.setMessage("Loading");
+            dialog.show();
         }
         @Override
         protected String doInBackground(String... params) {
@@ -198,6 +199,10 @@ public class PackagesFragment extends Fragment {
             }
 
             recyclerView.setAdapter(new PackagesRecyclerView(packagesList, mListener));
+
+            if(dialog.isShowing()){
+                dialog.dismiss();
+            }
         }
 
 

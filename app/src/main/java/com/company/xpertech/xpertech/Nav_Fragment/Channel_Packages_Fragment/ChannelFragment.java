@@ -1,11 +1,13 @@
 package com.company.xpertech.xpertech.Nav_Fragment.Channel_Packages_Fragment;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -85,7 +87,7 @@ public class ChannelFragment extends Fragment {
         int packages = bundle.getInt("package");
 
         channelsList = new ArrayList<Channels>();
-        ChannelFragment.ChannelTask channelTask = new ChannelFragment.ChannelTask(getContext());
+        ChannelFragment.ChannelTask channelTask = new ChannelFragment.ChannelTask((FragmentActivity) getContext());
         channelTask.execute("channel", packages+"");
 
         return view;
@@ -147,18 +149,17 @@ public class ChannelFragment extends Fragment {
      *  Task to query for the list of channel in regards to the package selected to be displayed.
      */
     public class ChannelTask extends AsyncTask<String,Void,String> {
-        Context ctx;
-        AlertDialog alertDialog;
+        ProgressDialog dialog;
 
-        public ChannelTask(Context ctx)
+        public ChannelTask(FragmentActivity activity)
         {
-            this.ctx =ctx;
+            dialog = new ProgressDialog(activity);
         }
 
         @Override
         protected void onPreExecute() {
-            alertDialog = new AlertDialog.Builder(ctx).create();
-            alertDialog.setTitle("");
+            dialog.setMessage("Loading");
+            dialog.show();
         }
         @Override
         protected String doInBackground(String... params) {
@@ -209,6 +210,9 @@ public class ChannelFragment extends Fragment {
         @Override
         protected void onPostExecute(String result) {
             display();
+            if(dialog.isShowing()){
+                dialog.dismiss();
+            }
         }
     }
 }

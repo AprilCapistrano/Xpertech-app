@@ -1,6 +1,7 @@
 package com.company.xpertech.xpertech.Nav_Fragment.Remote_Fragment;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -72,7 +73,7 @@ public class RemoteListFragment extends Fragment {
         /**
          *  Initiate the query for the remote function
          */
-        RemoteListFragment.RemoteTask remoteTask = new RemoteListFragment.RemoteTask(getContext());
+        RemoteListFragment.RemoteTask remoteTask = new RemoteListFragment.RemoteTask((FragmentActivity) getContext());
         remoteTask.execute("remote");
 
         /**
@@ -141,18 +142,17 @@ public class RemoteListFragment extends Fragment {
      * Query for the remote function
      */
     public class RemoteTask extends AsyncTask<String,Void,String> {
-        Context ctx;
-        AlertDialog alertDialog;
+        ProgressDialog dialog;
 
-        public RemoteTask(Context ctx)
+        public RemoteTask(FragmentActivity activity)
         {
-            this.ctx =ctx;
+            dialog = new ProgressDialog(activity);
         }
 
         @Override
         protected void onPreExecute() {
-            alertDialog = new AlertDialog.Builder(ctx).create();
-            alertDialog.setTitle("");
+            dialog.setMessage("Loading");
+            dialog.show();
         }
         @Override
         protected String doInBackground(String... params) {
@@ -200,6 +200,9 @@ public class RemoteListFragment extends Fragment {
         @Override
         protected void onPostExecute(String result) {
             display();
+            if(dialog.isShowing()){
+                dialog.dismiss();
+            }
         }
     }
 }

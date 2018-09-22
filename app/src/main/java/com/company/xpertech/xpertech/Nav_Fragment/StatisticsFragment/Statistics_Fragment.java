@@ -1,12 +1,14 @@
 package com.company.xpertech.xpertech.Nav_Fragment.StatisticsFragment;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -165,7 +167,7 @@ public class Statistics_Fragment extends Fragment {
          * Initiate the Background task async task to query for the statistical records of
          * call, login, and troubleshooting
          */
-        BackgroundTask loginPass = new BackgroundTask(getContext());
+        BackgroundTask loginPass = new BackgroundTask((FragmentActivity) getContext());
         loginPass.execute("cnt");
 
         return view;
@@ -203,18 +205,17 @@ public class Statistics_Fragment extends Fragment {
      *  Async task to query for the statistical records
      */
     public class BackgroundTask extends AsyncTask<String, Void, String> {
-        AlertDialog alertDialog;
-        Context ctx;
-        public String boxNumber = null;
+        ProgressDialog dialog;
 
-        public BackgroundTask(Context ctx) {
-            this.ctx = ctx;
+        public BackgroundTask(FragmentActivity activity)
+        {
+            dialog = new ProgressDialog(activity);
         }
 
         @Override
         protected void onPreExecute() {
-            alertDialog = new AlertDialog.Builder(ctx).create();
-            alertDialog.setTitle("Login Information....");
+            dialog.setMessage("Loading");
+            dialog.show();
         }
 
         @Override
@@ -382,6 +383,9 @@ public class Statistics_Fragment extends Fragment {
             login();
             call();
             trouble();
+            if(dialog.isShowing()){
+                dialog.dismiss();
+            }
         }
     }
 
