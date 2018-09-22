@@ -1,13 +1,15 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="30dp">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:layout_weight="0.8">
         <TextView
             android:id="@+id/item_text"
             android:layout_width="match_parent"
@@ -20,6 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"/>
+        </LinearLayout>
 
         <Button
             android:id="@+id/btn_done"
@@ -31,9 +34,8 @@
             android:textSize="18sp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
+            android:layout_weight="0.001"
             android:text="DONE"
             android:layout_gravity="bottom"/>
 
     </LinearLayout>
-
-</ScrollView>
