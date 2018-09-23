@@ -246,7 +246,7 @@ public class SignUpActivity extends AppCompatActivity {
                     // an un successful log in was performed
                     Toast.makeText(getApplicationContext(), "Sorry, device \"" + BOX_NUMBER_SESSION + "\" is not registered.", Toast.LENGTH_SHORT).show();
                     Task task = new Task();
-                    task.execute("stat", "login", "fail", "10001000000000", "Failed Login Attemp");
+                    task.execute("stat", "login", "fail", "10001000000000", "Failed Login Attempt");
                 }
             }
         }

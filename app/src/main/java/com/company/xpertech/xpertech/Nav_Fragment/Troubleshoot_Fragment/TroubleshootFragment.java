@@ -129,10 +129,30 @@ public class TroubleshootFragment extends Fragment {
         return view;
     }
 
+    public String checkDictionary(String word){
+        BufferedReader reader = null;
+        String line = "";
+        try{
+            reader = new BufferedReader(new InputStreamReader(getContext().getAssets().open("dictionary.txt"),"UTF-8"));
+            while ((line = reader.readLine()) != null){
+                String[] content = line.split("\\$");
+                String[] list = content[1].split(",");
+                for(int i = 0; i < list.length; i++){
+                    if(list[i].equalsIgnoreCase(word)){
+                        return content[0];
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return word;
+    }
+
     public void filter(String text){
         ArrayList<Troubleshoot> filtered = new ArrayList<>();
         for(Troubleshoot item: troubleshootList){
-            if(item.getTitle().toLowerCase().contains(text.toLowerCase())){
+            if(item.getTitle().toLowerCase().contains(checkDictionary(text.toLowerCase()))){
                 filtered.add(item);
             }
         }

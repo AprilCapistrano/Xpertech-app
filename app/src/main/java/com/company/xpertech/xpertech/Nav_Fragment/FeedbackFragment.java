@@ -84,8 +84,14 @@ public class FeedbackFragment extends Fragment {
         email_subject = (EditText) view.findViewById(R.id.email_subject);
         email_msg = (EditText) view.findViewById(R.id.email_msg);
 
-        FeedbackFragment.FeedbackTask task = new FeedbackFragment.FeedbackTask((FragmentActivity) getContext());
-        task.execute("send feedback");
+        Button send = (Button) view.findViewById(R.id.btn_email);
+        send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FeedbackFragment.FeedbackTask task = new FeedbackFragment.FeedbackTask((FragmentActivity) getContext());
+                task.execute("send feedback");
+            }
+        });
 
         return view;
     }
@@ -171,13 +177,12 @@ public class FeedbackFragment extends Fragment {
                     inputStream.close();
                     httpURLConnection.disconnect();
 
-                    Toast.makeText(getContext(), "Feedback sending successful", Toast.LENGTH_SHORT).show();
                     return line;
 
                 } catch (MalformedURLException e) {
-                    Toast.makeText(getContext(), "Feedback sending failed. Please try again.", Toast.LENGTH_SHORT).show();
+                    return "Feedback sending failed. Please try again.";
                 } catch (IOException e) {
-                    Toast.makeText(getContext(), "Feedback sending failed. Please try again.", Toast.LENGTH_SHORT).show();
+                    return "Feedback sending failed. Please try again.";
                 }
             }
 
@@ -195,6 +200,7 @@ public class FeedbackFragment extends Fragment {
             if(dialog.isShowing()){
                 dialog.dismiss();
             }
+            Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
         }
     }
 }
