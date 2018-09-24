@@ -168,21 +168,18 @@ public class FeedbackFragment extends Fragment {
                     bufferedWriter.close();
                     outputStream.close();
                     InputStream inputStream = httpURLConnection.getInputStream();
-                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream,"UTF-8"));
-
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
                     String line = "";
                     line = bufferedReader.readLine();
-
+                    Log.d("Result", line);
                     bufferedReader.close();
                     inputStream.close();
                     httpURLConnection.disconnect();
-
                     return line;
-
                 } catch (MalformedURLException e) {
                     return "Feedback sending failed. Please try again.";
                 } catch (IOException e) {
-                    return "Feedback sending failed. Please try again.";
+                    Log.d("TASK ERR", String.valueOf(e));
                 }
             }
 

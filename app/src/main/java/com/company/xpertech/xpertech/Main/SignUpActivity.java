@@ -71,11 +71,11 @@ public class SignUpActivity extends AppCompatActivity {
         sharedPref = getSharedPreferences("values", Context.MODE_PRIVATE);
 
         // Static User
-//        String result = "10011000000001";
-//        USER_SESSION = result;
-//        Log.d("SESSION", USER_SESSION);
-//        BackgroundTask backgroundTask = new BackgroundTask(getApplicationContext());
-//        backgroundTask.execute("login", result);
+        //String result = "10011000000001";
+        //USER_SESSION = result;
+        //Log.d("SESSION", USER_SESSION);
+        //BackgroundTask backgroundTask = new BackgroundTask(getApplicationContext());
+        //backgroundTask.execute("login", result);
 
 
         qr_result = (TextView) findViewById(R.id.qr_result);
