@@ -23,7 +23,8 @@
                 android:textSize="18sp"
                 android:layout_margin="3dp"
                 android:padding="@dimen/item_padding"
-                android:background="@android:color/holo_blue_light"
+                android:background="@color/homeColor"
+                android:textColor="@android:color/white"
                 android:text="@string/menu_troubleshoot"/>
 
         </LinearLayout>
@@ -41,7 +42,8 @@
                 android:textSize="18sp"
                 android:layout_margin="3dp"
                 android:padding="@dimen/item_padding"
-                android:background="@android:color/holo_orange_light"
+                android:background="@color/homeColor"
+                android:textColor="@android:color/white"
                 android:text="@string/menu_self_install"/>
 
             <Button
@@ -52,7 +54,8 @@
                 android:textSize="18sp"
                 android:layout_margin="3dp"
                 android:padding="@dimen/item_padding"
-                android:background="@android:color/holo_red_light"
+                android:background="@color/homeColor"
+                android:textColor="@android:color/white"
                 android:text="@string/menu_manual"/>
 
         </LinearLayout>
@@ -71,7 +74,8 @@
                 android:textSize="18sp"
                 android:layout_margin="3dp"
                 android:padding="@dimen/item_padding"
-                android:background="@android:color/holo_green_light"
+                android:background="@color/homeColor"
+                android:textColor="@android:color/white"
                 android:text="@string/menu_remote"/>
 
             <Button
@@ -82,7 +86,8 @@
                 android:textSize="18sp"
                 android:layout_margin="3dp"
                 android:padding="@dimen/item_padding"
-                android:background="@android:color/holo_orange_dark"
+                android:background="@color/homeColor"
+                android:textColor="@android:color/white"
                 android:text="@string/menu_package"/>
 
         </LinearLayout>

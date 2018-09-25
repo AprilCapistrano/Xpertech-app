@@ -6,6 +6,5 @@
     android:name="com.company.xpertech.xpertech.PackagesFragment"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:layoutManager="LinearLayoutManager"
     tools:context="com.company.xpertech.xpertech.Nav_Fragment.Channel_Packages_Fragment.PackagesFragment"
     tools:listitem="@layout/fragment_packages" />

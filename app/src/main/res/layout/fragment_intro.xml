@@ -27,7 +27,7 @@
         android:paddingStart="@dimen/content_padding"
         android:paddingEnd="@dimen/content_padding"
         android:layout_margin="@dimen/content_padding"
-        android:background="@color/colorPrimary"
+        android:background="@color/homeColor"
         android:textColor="@android:color/white"
         android:textSize="18sp"
         android:layout_marginLeft="10dp"

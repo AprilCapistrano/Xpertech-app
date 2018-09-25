@@ -7,7 +7,7 @@
     android:paddingStart="@dimen/content_padding"
     android:paddingEnd="@dimen/content_padding"
     android:padding="@dimen/item_padding"
-    android:layout_margin="@dimen/item_padding"
+    android:layout_margin="3dp"
     android:id="@+id/channel_layout"
     tools:context="com.company.xpertech.xpertech.Nav_Fragment.Channel_Packages_Fragment.ChannelFragment">
 
@@ -15,12 +15,14 @@
         android:id="@+id/channel_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="0dp"
         android:textAppearance="?attr/textAppearanceListItem" />
 
     <TextView
         android:id="@+id/channel_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20dp"
         android:textAppearance="?attr/textAppearanceListItem" />
 
 </LinearLayout>

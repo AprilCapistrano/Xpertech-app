@@ -24,10 +24,12 @@
         android:layout_height="wrap_content"
         android:hint="Title"
         android:padding="10dp"
+        android:backgroundTint="@color/homeColor"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:id="@+id/email_subject"/>
     <EditText
+        android:backgroundTint="@color/homeColor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="What's your feedback?"
@@ -40,7 +42,7 @@
         android:layout_height="wrap_content"
         android:text="Submit"
         android:layout_marginTop="@dimen/item_padding"
-        android:background="@color/colorPrimary"
+        android:background="@color/homeColor"
         android:textColor="@android:color/white"
         android:textSize="18sp"
         android:layout_marginLeft="15dp"

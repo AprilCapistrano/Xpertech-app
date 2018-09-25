@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimary">#3F51BF</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="appBarColor">#B9CCD0</color>
-    <!--<color name="appBarColor">#ED2939</color>-->
+    <color name="appBarColor">#3F51BF</color>
+    <color name="homeColor">#4EAAED</color>
     <color name="bgColor">#F1F0D2</color>
 </resources>

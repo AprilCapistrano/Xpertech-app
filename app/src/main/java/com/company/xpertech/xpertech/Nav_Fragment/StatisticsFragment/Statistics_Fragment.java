@@ -123,7 +123,7 @@ public class Statistics_Fragment extends Fragment {
 
         PieDataSet dataSet =  new PieDataSet(entries, "");
         PieData data = new PieData(xValues, dataSet);
-        dataSet.setColors(new int[]{Color.YELLOW, Color.RED});
+        dataSet.setColors(new int[]{Color.BLUE, Color.RED});
         dataSet.setSliceSpace(5f);
         dataSet.setValueTextSize(15f);
         mChart.setUsePercentValues(true);
@@ -149,7 +149,7 @@ public class Statistics_Fragment extends Fragment {
 
         PieDataSet dataSet =  new PieDataSet(entries, "");
         PieData data = new PieData(xValues, dataSet);
-        dataSet.setColors(new int[]{Color.GREEN, Color.RED});
+        dataSet.setColors(new int[]{Color.BLUE, Color.RED});
         dataSet.setSliceSpace(5f);
         dataSet.setValueTextSize(15f);
         mChart.setUsePercentValues(true);

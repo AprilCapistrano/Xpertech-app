@@ -13,18 +13,17 @@
         <TextView
             android:id="@+id/item_text"
             android:layout_width="match_parent"
-            android:layout_weight="0.2"
-            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:layout_height="0dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             android:textSize="18sp"/>
 
         <pl.droidsonroids.gif.GifImageView
             android:id="@+id/gif_imageView"
-            android:layout_weight="0.8"
+            android:layout_weight="0.7"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_gravity="center_vertical"
-            android:paddingTop="50dp"/>
+            android:layout_gravity="center_horizontal"/>
         </LinearLayout>
 
         <Button
@@ -32,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/item_padding"
-            android:background="@color/colorPrimary"
+            android:background="@color/homeColor"
             android:textColor="@android:color/white"
             android:textSize="18sp"
             android:layout_marginLeft="15dp"

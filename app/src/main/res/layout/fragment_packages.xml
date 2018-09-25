@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            android:textColor="@android:color/white"
+            android:textColor="#4E4E4E"
             android:textSize="30sp"/>
 
         <TextView
@@ -33,7 +33,7 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/item_padding"
-            android:background="@color/colorPrimary"
+            android:background="@color/homeColor"
             android:textColor="@android:color/white"
             android:text="VIEW MORE"/>
 
