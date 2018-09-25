@@ -91,7 +91,7 @@ public class TroubleeshootItemFragment extends Fragment {
          * Get the position of the pressed value from TroubleshootFragment
          */
         Bundle bundle = getArguments();
-        position = bundle.getInt("position")+1;
+        position = bundle.getInt("position");
         title = bundle.getString("title");
 
 

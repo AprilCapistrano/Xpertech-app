@@ -46,14 +46,16 @@ public class PackagesRecyclerView extends RecyclerView.Adapter<PackagesRecyclerV
 
     @Override
     public void onBindViewHolder(final PackagesRecyclerView.ViewHolder holder, final int position) {
-        holder.mTitleView.setText(mPackages.get(position).getTitle());
+        String title = mPackages.get(position).getTitle().split("\\|")[0];
+        final int id = Integer.parseInt(mPackages.get(position).getTitle().split("\\|")[1].replaceAll("\\s", ""));
+        holder.mTitleView.setText(title);
         holder.mChannelView.setText(mPackages.get(position).getNumOfChannel());
         holder.mButtonView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 activity = (FragmentActivity) ctx;
                 Bundle bundle = new Bundle();
-                bundle.putInt("package",(position+1));
+                bundle.putInt("package",(id));
                 ChannelFragment channelf = new ChannelFragment();
                 channelf.setArguments(bundle);
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.content_main, channelf).addToBackStack("tag").commit();

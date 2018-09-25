@@ -48,14 +48,16 @@ public class MyTroubleshootRecyclerViewAdapter extends RecyclerView.Adapter<MyTr
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        holder.mContentView.setText(mValues.get(position).getTitle());
+        final String title = mValues.get(position).getTitle().split("\\|")[0];
+        final int id = Integer.parseInt(mValues.get(position).getTitle().split("\\|")[1].replaceAll("\\s", ""));
+        holder.mContentView.setText(title);
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 actvty = (FragmentActivity) ctx;
                 Bundle bundle = new Bundle();
-                bundle.putInt("position",position);
-                bundle.putString("title", mValues.get(position).getTitle());
+                bundle.putInt("position",id);
+                bundle.putString("title", title);
                 IntroFragment introf = new IntroFragment();
                 introf.setArguments(bundle);
                 actvty.getSupportFragmentManager().beginTransaction().replace(R.id.content_main, introf).commit();
